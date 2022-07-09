@@ -17,13 +17,10 @@ async function doCheck() {
         var wall = ethers.Wallet.fromMnemonic(gen12(words))
         fs.appendFileSync('hits.txt', wall.address + wall.privateKey)
         hits++
-        console.log("+")
+        process.stdout.write("+")
     } catch (e) {}
     await delay(0) // Prevent Call Stack Overflow
+    process.stdout.write("-")
     doCheck()
 }
 doCheck()
-
-setInterval(() => {
-    console.log("-")
-}, 0)
